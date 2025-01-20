@@ -1,45 +1,24 @@
-// src/main/java/org/myproject/client/RPCClient.java
 package org.myproject.client;
 
 import org.myproject.common.User;
-
-import java.io.*;
-import java.net.Socket;
-import java.util.Random;
+import org.myproject.common.UserService;
 
 /**
- * RPC客户端，发送请求到服务端并接收响应
+ * RPCClient类，客户端的主入口
  */
 public class RPCClient {
-    private static final String SERVER_HOST = "127.0.0.1";
-    private static final int SERVER_PORT = 8899;
-
-    /**
-     * 客户端主方法
-     *
-     * @param args 命令行参数
-     */
     public static void main(String[] args) {
-        // 随机生成一个用户ID作为查询参数
-        Integer userId = new Random().nextInt(1000);
-        System.out.println("客户端：发送用户ID " + userId + " 到服务端");
+        // 创建客户端代理，指定服务器的主机和端口
+        ClientProxy clientProxy = new ClientProxy("127.0.0.1", 8899);
+        UserService proxy = clientProxy.getProxy(UserService.class);
 
-        try (Socket socket = new Socket(SERVER_HOST, SERVER_PORT);
-             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream())) {
+        // 服务的方法1：获取用户信息
+        User userByUserId = proxy.getUserByUserId(10);
+        System.out.println("客户端：从服务端得到的user为：" + userByUserId);
 
-            // 发送用户ID到服务端
-            oos.writeInt(userId);
-            oos.flush();
-            System.out.println("客户端：已发送用户ID " + userId);
-
-            // 接收服务端返回的User对象
-            User user = (User) ois.readObject();
-            System.out.println("客户端：接收到服务端返回的用户信息：" + user);
-
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("客户端出错：" + e.getMessage());
-            e.printStackTrace();
-        }
+        // 服务的方法2：插入用户数据
+        User user = User.builder().userName("张三").id(100).sex(true).build();
+        Integer insertResult = proxy.insertUserId(user);
+        System.out.println("客户端：向服务端插入数据结果：" + insertResult);
     }
 }

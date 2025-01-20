@@ -1,11 +1,15 @@
 package org.myproject.server;
 
-import org.myproject.common.User;
+import org.myproject.common.RPCRequest;
+import org.myproject.common.RPCResponse;
 import org.myproject.common.UserService;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 
 /**
  * RPC服务器，监听客户端请求并处理
@@ -27,7 +31,7 @@ public class RPCServer {
             while (true) {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("服务端：接收到一个客户端连接");
-                // 为每个客户端连接开启一个新线程处理
+                // 使用线程池处理客户端请求（改进点）
                 new Thread(() -> handleClient(clientSocket)).start();
             }
         } catch (IOException e) {
@@ -45,27 +49,39 @@ public class RPCServer {
         try (ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
              ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream())) {
 
-            // 读取客户端传来的用户ID
-            Integer userId = ois.readInt();
-            System.out.println("服务端：收到用户ID " + userId + " 的查询请求");
+            // 读取客户端传来的RPCRequest
+            RPCRequest request = (RPCRequest) ois.readObject();
+            System.out.println("服务端：收到请求 " + request);
 
-            // 调用UserService获取用户信息
-            User user = userService.getUserByUserId(userId);
+            // 通过反射调用相应的方法
+            Method method = userService.getClass().getMethod(request.getMethodName(), request.getParamsTypes());
+            Object result = method.invoke(userService, request.getParams());
 
-            // 将用户信息写回客户端
-            oos.writeObject(user);
+            // 封装RPCResponse并返回给客户端
+            RPCResponse response = RPCResponse.success(result);
+            oos.writeObject(response);
             oos.flush();
-            System.out.println("服务端：已返回用户信息");
+            System.out.println("服务端：返回响应 " + response);
 
-        } catch (IOException e) {
-            System.err.println("服务端处理客户端请求时出错：" + e.getMessage());
+        } catch (IOException | ClassNotFoundException | NoSuchMethodException |
+                 IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
+            System.out.println("服务端：处理客户端请求时出错");
+            try {
+                ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
+                RPCResponse response = RPCResponse.fail();
+                oos.writeObject(response);
+                oos.flush();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+                System.out.println("服务端：发送错误响应时出错");
+            }
         } finally {
             try {
                 clientSocket.close();
                 System.out.println("服务端：关闭客户端连接");
             } catch (IOException e) {
-                System.err.println("服务端关闭客户端连接时出错：" + e.getMessage());
+                System.err.println("服务端：关闭客户端连接时出错：" + e.getMessage());
                 e.printStackTrace();
             }
         }

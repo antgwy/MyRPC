@@ -11,4 +11,12 @@ public interface UserService {
      * @return User对象
      */
     User getUserByUserId(Integer id);
+
+    /**
+     * 插入用户数据
+     *
+     * @param user 用户对象
+     * @return 操作结果（例如，1表示成功）
+     */
+    Integer insertUserId(User user);
 }
