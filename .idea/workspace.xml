@@ -9,12 +9,10 @@
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imgs/runclient.png" beforeDir="false" afterPath="$PROJECT_DIR$/imgs/runclient.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imgs/runserver.png" beforeDir="false" afterPath="$PROJECT_DIR$/imgs/runserver.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/myproject/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/myproject/client/ClientProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/myproject/client/ClientProxy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/myproject/client/RPCClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/myproject/client/RPCClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/myproject/common/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/myproject/common/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/myproject/common/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/myproject/common/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/myproject/server/RPCServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/myproject/server/RPCServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/myproject/server/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/myproject/server/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,18 +41,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "onboarding.tips.debug.path": "/Users/antgwy/IdeaProjects/MyRPC/src/main/java/org/myproject/Main.java",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/antgwy/IdeaProjects/MyRPC/src/main/java/org/myproject/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/org/myproject/common" />
@@ -73,8 +71,18 @@
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="041208e5-fd3f-4f52-b46e-2afb9a6dd62e" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="041208e5-fd3f-4f52-b46e-2afb9a6dd62e">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -86,11 +94,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/myproject/Main.java</url>
-          <line>12</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/myproject/common/User.java</url>
           <line>12</line>
