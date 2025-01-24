@@ -91,7 +91,7 @@ mvn exec:java -Dexec.mainClass="org.myproject.server.TestServer"
 ## 启动客户端
 
 ```bash
-mvn exec:java -Dexec.mainClass="org.myproject.client.RPCClient"
+mvn exec:java -Dexec.mainClass="org.myproject.client.TestClient"
 ```
 
 <div align="center"><img src="imgs/runclient.png"/></div>
