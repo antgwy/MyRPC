@@ -2,7 +2,6 @@ package org.myproject.client;
 
 import org.myproject.common.RPCRequest;
 import org.myproject.common.RPCResponse;
-import org.myproject.io.IOClient;
 
 import lombok.AllArgsConstructor;
 
@@ -11,12 +10,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * ClientProxy类，使用动态代理生成Service接口的代理对象
+ * RPCClientProxy类，使用动态代理生成Service接口的代理对象
  */
 @AllArgsConstructor
-public class ClientProxy implements InvocationHandler {
-    private final String host;
-    private final int port;
+public class RPCClientProxy implements InvocationHandler {
+    private RPCClient rpcClient;
 
     /**
      * 动态代理方法，每次代理对象调用方法都会触发此方法
@@ -38,7 +36,7 @@ public class ClientProxy implements InvocationHandler {
                 .build();
 
         // 发送请求并接收响应
-        RPCResponse response = IOClient.sendRequest(host, port, request);
+        RPCResponse response = rpcClient.sendRequest(request);
         if (response == null) {
             throw new RuntimeException("RPC调用失败，未收到响应");
         }

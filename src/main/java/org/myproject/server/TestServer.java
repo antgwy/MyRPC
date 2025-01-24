@@ -1,12 +1,7 @@
 package org.myproject.server;
 
-import org.myproject.server.ServiceProvider;
-import org.myproject.server.RPCServer;
-import org.myproject.server.SimpleRPCRPCServer;
 import org.myproject.common.UserService;
 import org.myproject.common.BlogService;
-import org.myproject.server.UserServiceImpl;
-import org.myproject.server.BlogServiceImpl;
 
 import java.util.Map;
 
@@ -25,7 +20,8 @@ public class TestServer {
         Map<String, Object> serviceMap = serviceProvider.getServiceProviderMap();
 
         // 创建并启动基于线程池的RPC服务器
-        RPCServer rpcServer = new ThreadPoolRPCRPCServer(serviceMap);
+        // RPCServer rpcServer = new ThreadPoolRPCRPCServer(serviceMap);
+        RPCServer rpcServer = new NettyRPCServer(serviceProvider);
         rpcServer.start(8899);
     }
 }
