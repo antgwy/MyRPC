@@ -10,24 +10,24 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * RPCClientProxyç±»ï¼Œä½¿ç”¨åŠ¨æ€ä»£ç†ç”ŸæˆServiceæ¥å£çš„ä»£ç†å¯¹è±¡
+ * RPCClientProxyÀà£¬Ê¹ÓÃ¶¯Ì¬´úÀíÉú³ÉService½Ó¿ÚµÄ´úÀí¶ÔÏó
  */
 @AllArgsConstructor
 public class RPCClientProxy implements InvocationHandler {
     private RPCClient rpcClient;
 
     /**
-     * åŠ¨æ€ä»£ç†æ–¹æ³•ï¼Œæ¯æ¬¡ä»£ç†å¯¹è±¡è°ƒç”¨æ–¹æ³•éƒ½ä¼šè§¦å‘æ­¤æ–¹æ³•
+     * ¶¯Ì¬´úÀí·½·¨£¬Ã¿´Î´úÀí¶ÔÏóµ÷ÓÃ·½·¨¶¼»á´¥·¢´Ë·½·¨
      *
-     * @param proxy  ä»£ç†å¯¹è±¡
-     * @param method è¢«è°ƒç”¨çš„æ–¹æ³•
-     * @param args   æ–¹æ³•å‚æ•°
-     * @return æ–¹æ³•çš„è¿”å›å€¼
-     * @throws Throwable å¼‚å¸¸
+     * @param proxy  ´úÀí¶ÔÏó
+     * @param method ±»µ÷ÓÃµÄ·½·¨
+     * @param args   ·½·¨²ÎÊı
+     * @return ·½·¨µÄ·µ»ØÖµ
+     * @throws Throwable Òì³£
      */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        // æ„å»ºRPCRequestå¯¹è±¡
+        // ¹¹½¨RPCRequest¶ÔÏó
         RPCRequest request = RPCRequest.builder()
                 .interfaceName(method.getDeclaringClass().getName())
                 .methodName(method.getName())
@@ -35,23 +35,23 @@ public class RPCClientProxy implements InvocationHandler {
                 .paramsTypes(method.getParameterTypes())
                 .build();
 
-        // å‘é€è¯·æ±‚å¹¶æ¥æ”¶å“åº”
+        // ·¢ËÍÇëÇó²¢½ÓÊÕÏìÓ¦
         RPCResponse response = rpcClient.sendRequest(request);
         if (response == null) {
-            throw new RuntimeException("RPCè°ƒç”¨å¤±è´¥ï¼Œæœªæ”¶åˆ°å“åº”");
+            throw new RuntimeException("RPCµ÷ÓÃÊ§°Ü£¬Î´ÊÕµ½ÏìÓ¦");
         }
         if (response.getCode() != 200) {
-            throw new RuntimeException("RPCè°ƒç”¨å¤±è´¥ï¼Œé”™è¯¯ä¿¡æ¯ï¼š" + response.getMessage());
+            throw new RuntimeException("RPCµ÷ÓÃÊ§°Ü£¬´íÎóĞÅÏ¢£º" + response.getMessage());
         }
         return response.getData();
     }
 
     /**
-     * è·å–æ¥å£çš„ä»£ç†å¯¹è±¡
+     * »ñÈ¡½Ó¿ÚµÄ´úÀí¶ÔÏó
      *
-     * @param clazz æœåŠ¡æ¥å£çš„Classå¯¹è±¡
-     * @param <T>   æ³›å‹ç±»å‹
-     * @return ä»£ç†å¯¹è±¡
+     * @param clazz ·şÎñ½Ó¿ÚµÄClass¶ÔÏó
+     * @param <T>   ·ºĞÍÀàĞÍ
+     * @return ´úÀí¶ÔÏó
      */
     @SuppressWarnings("unchecked")
     public <T> T getProxy(Class<T> clazz) {

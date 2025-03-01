@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * NettyRPCServerHandlerç±»ï¼Œå¤„ç†RPCè¯·æ±‚å¹¶è¿”å›å“åº”
+ * NettyRPCServerHandlerÀà£¬´¦ÀíRPCÇëÇó²¢·µ»ØÏìÓ¦
  */
 @AllArgsConstructor
 public class NettyRPCServerHandler extends SimpleChannelInboundHandler<RPCRequest> {
@@ -19,23 +19,23 @@ public class NettyRPCServerHandler extends SimpleChannelInboundHandler<RPCReques
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RPCRequest request) throws Exception {
-        System.out.println("æœåŠ¡ç«¯ï¼šæ”¶åˆ°è¯·æ±‚ " + request);
+        System.out.println("·şÎñ¶Ë£ºÊÕµ½ÇëÇó " + request);
         RPCResponse response = getResponse(request);
         ctx.writeAndFlush(response);
-        System.out.println("æœåŠ¡ç«¯ï¼šå·²å‘é€å“åº” " + response);
+        System.out.println("·şÎñ¶Ë£ºÒÑ·¢ËÍÏìÓ¦ " + response);
     }
 
     /**
-     * å¤„ç†RPCRequestå¹¶ç”ŸæˆRPCResponse
+     * ´¦ÀíRPCRequest²¢Éú³ÉRPCResponse
      *
-     * @param request RPCè¯·æ±‚å¯¹è±¡
-     * @return RPCå“åº”å¯¹è±¡
+     * @param request RPCÇëÇó¶ÔÏó
+     * @return RPCÏìÓ¦¶ÔÏó
      */
     private RPCResponse getResponse(RPCRequest request) {
         String interfaceName = request.getInterfaceName();
         Object service = serviceProvider.getService(interfaceName);
         if (service == null) {
-            System.out.println("æœåŠ¡ç«¯ï¼šæœªæ‰¾åˆ°å¯¹åº”çš„æœåŠ¡ " + interfaceName);
+            System.out.println("·şÎñ¶Ë£ºÎ´ÕÒµ½¶ÔÓ¦µÄ·şÎñ " + interfaceName);
             return RPCResponse.builder()
                     .code(404)
                     .message("Service not found: " + interfaceName)
@@ -48,7 +48,7 @@ public class NettyRPCServerHandler extends SimpleChannelInboundHandler<RPCReques
             return RPCResponse.success(result);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
-            System.out.println("æœåŠ¡ç«¯ï¼šæ–¹æ³•æ‰§è¡Œé”™è¯¯");
+            System.out.println("·şÎñ¶Ë£º·½·¨Ö´ĞĞ´íÎó");
             return RPCResponse.builder()
                     .code(500)
                     .message("Method execution error: " + e.getMessage())

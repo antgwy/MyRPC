@@ -6,19 +6,19 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * RPCè¯·æ±‚å¯¹è±¡ï¼ŒåŒ…å«è°ƒç”¨æ‰€éœ€çš„ä¿¡æ¯
+ * RPCÇëÇó¶ÔÏó£¬°üº¬µ÷ÓÃËùĞèµÄĞÅÏ¢
  */
 @Data
 @Builder
 public class RPCRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // æœåŠ¡ç±»åï¼Œå®¢æˆ·ç«¯åªçŸ¥é“æ¥å£åï¼Œåœ¨æœåŠ¡ç«¯ä¸­ç”¨æ¥å£åæŒ‡å‘å®ç°ç±»
+    // ·şÎñÀàÃû£¬¿Í»§¶ËÖ»ÖªµÀ½Ó¿ÚÃû£¬ÔÚ·şÎñ¶ËÖĞÓÃ½Ó¿ÚÃûÖ¸ÏòÊµÏÖÀà
     private String interfaceName;
-    // æ–¹æ³•å
+    // ·½·¨Ãû
     private String methodName;
-    // å‚æ•°åˆ—è¡¨
+    // ²ÎÊıÁĞ±í
     private Object[] params;
-    // å‚æ•°ç±»å‹
+    // ²ÎÊıÀàĞÍ
     private Class<?>[] paramsTypes;
 }

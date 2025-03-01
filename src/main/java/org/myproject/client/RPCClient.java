@@ -4,14 +4,14 @@ import org.myproject.common.RPCRequest;
 import org.myproject.common.RPCResponse;
 
 /**
- * RPCClientæ¥å£ï¼Œå®šä¹‰å‘é€è¯·æ±‚çš„æ–¹æ³•
+ * RPCClient½Ó¿Ú£¬¶¨Òå·¢ËÍÇëÇóµÄ·½·¨
  */
 public interface RPCClient {
     /**
-     * å‘é€RPCè¯·æ±‚å¹¶æ¥æ”¶å“åº”
+     * ·¢ËÍRPCÇëÇó²¢½ÓÊÕÏìÓ¦
      *
-     * @param request RPCè¯·æ±‚å¯¹è±¡
-     * @return RPCå“åº”å¯¹è±¡
+     * @param request RPCÇëÇó¶ÔÏó
+     * @return RPCÏìÓ¦¶ÔÏó
      */
     RPCResponse sendRequest(RPCRequest request);
 }

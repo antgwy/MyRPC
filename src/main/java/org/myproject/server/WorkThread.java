@@ -12,7 +12,7 @@ import java.net.Socket;
 import java.util.Map;
 
 /**
- * å·¥ä½œä»»åŠ¡ç±»ï¼Œå¤„ç†å•ä¸ªå®¢æˆ·ç«¯è¯·æ±‚
+ * ¹¤×÷ÈÎÎñÀà£¬´¦Àíµ¥¸ö¿Í»§¶ËÇëÇó
  */
 @AllArgsConstructor
 public class WorkThread implements Runnable{
@@ -24,45 +24,45 @@ public class WorkThread implements Runnable{
         try (ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
              ObjectInputStream ois = new ObjectInputStream(socket.getInputStream())) {
 
-            // è¯»å–RPCRequest
+            // ¶ÁÈ¡RPCRequest
             RPCRequest request = (RPCRequest) ois.readObject();
-            System.out.println("æœåŠ¡ç«¯ï¼šæ”¶åˆ°è¯·æ±‚ " + request);
+            System.out.println("·şÎñ¶Ë£ºÊÕµ½ÇëÇó " + request);
 
-            // å¤„ç†è¯·æ±‚å¹¶ç”ŸæˆRPCResponse
+            // ´¦ÀíÇëÇó²¢Éú³ÉRPCResponse
             RPCResponse response = getResponse(request);
 
-            // å‘é€å“åº”
+            // ·¢ËÍÏìÓ¦
             oos.writeObject(response);
             oos.flush();
-            System.out.println("æœåŠ¡ç«¯ï¼šè¿”å›å“åº” " + response);
+            System.out.println("·şÎñ¶Ë£º·µ»ØÏìÓ¦ " + response);
 
         } catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
-            System.out.println("æœåŠ¡ç«¯ï¼šä»IOä¸­è¯»å–æ•°æ®é”™è¯¯");
+            System.out.println("·şÎñ¶Ë£º´ÓIOÖĞ¶ÁÈ¡Êı¾İ´íÎó");
         } finally {
             try {
                 socket.close();
-                System.out.println("æœåŠ¡ç«¯ï¼šå…³é—­å®¢æˆ·ç«¯è¿æ¥");
+                System.out.println("·şÎñ¶Ë£º¹Ø±Õ¿Í»§¶ËÁ¬½Ó");
             } catch (IOException e) {
-                System.err.println("æœåŠ¡ç«¯ï¼šå…³é—­å®¢æˆ·ç«¯è¿æ¥æ—¶å‡ºé”™ï¼š" + e.getMessage());
+                System.err.println("·şÎñ¶Ë£º¹Ø±Õ¿Í»§¶ËÁ¬½ÓÊ±³ö´í£º" + e.getMessage());
                 e.printStackTrace();
             }
         }
     }
 
     private RPCResponse getResponse(RPCRequest request){
-        // è·å–æœåŠ¡æ¥å£å
+        // »ñÈ¡·şÎñ½Ó¿ÚÃû
         String interfaceName = request.getInterfaceName();
-        // è·å–æœåŠ¡å®ç°å¯¹è±¡
+        // »ñÈ¡·şÎñÊµÏÖ¶ÔÏó
         Object service = serviceProvide.get(interfaceName);
-        // ä½¿ç”¨åå°„è°ƒç”¨å¯¹åº”çš„æ–¹æ³•
+        // Ê¹ÓÃ·´Éäµ÷ÓÃ¶ÔÓ¦µÄ·½·¨
         try {
             Method method = service.getClass().getMethod(request.getMethodName(), request.getParamsTypes());
             Object invoke = method.invoke(service, request.getParams());
             return RPCResponse.success(invoke);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
-            System.out.println("æœåŠ¡ç«¯ï¼šæ–¹æ³•æ‰§è¡Œé”™è¯¯");
+            System.out.println("·şÎñ¶Ë£º·½·¨Ö´ĞĞ´íÎó");
             return RPCResponse.fail();
         }
     }

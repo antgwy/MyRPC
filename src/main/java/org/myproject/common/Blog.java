@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * Blog瀹炰綋绫伙紝鍏变韩缁欏鎴风鍜屾湇鍔＄
+ * Blog实体类，共享给客户端和服务端
  */
 @Data
 @Builder

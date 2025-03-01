@@ -10,21 +10,21 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.codec.serialization.ClassResolvers;
 
 /**
- * NettyClientInitializerç±»ï¼Œåˆå§‹åŒ–Nettyå®¢æˆ·ç«¯çš„ChannelPipeline
+ * NettyClientInitializerÀà£¬³õÊ¼»¯Netty¿Í»§¶ËµÄChannelPipeline
  */
 public class NettyClientInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        // å¤„ç†ç²˜åŒ…æ‹†åŒ…é—®é¢˜
+        // ´¦ÀíÕ³°ü²ğ°üÎÊÌâ
         pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
         pipeline.addLast(new LengthFieldPrepender(4));
-        // ä½¿ç”¨Javaåºåˆ—åŒ–
+        // Ê¹ÓÃJavaĞòÁĞ»¯
         pipeline.addLast(new ObjectEncoder());
         pipeline.addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
 
-        // æ·»åŠ è‡ªå®šä¹‰çš„RPCå“åº”å¤„ç†å™¨
+        // Ìí¼Ó×Ô¶¨ÒåµÄRPCÏìÓ¦´¦ÀíÆ÷
         pipeline.addLast(new NettyRPCClientHandler());
     }
 }

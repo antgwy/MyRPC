@@ -7,19 +7,19 @@ import java.util.Map;
 
 public class TestServer {
     public static void main(String[] args) {
-        // åˆ›å»ºæœåŠ¡å®ç°ç±»å®ä¾‹
+        // ´´½¨·şÎñÊµÏÖÀàÊµÀı
         UserService userService = new UserServiceImpl();
         BlogService blogService = new BlogServiceImpl();
 
-        // åˆ›å»ºæœåŠ¡æä¾›è€…å¹¶æ³¨å†ŒæœåŠ¡
+        // ´´½¨·şÎñÌá¹©Õß²¢×¢²á·şÎñ
         ServiceProvider serviceProvider = new ServiceProvider();
         serviceProvider.provideServiceInterface(userService);
         serviceProvider.provideServiceInterface(blogService);
 
-        // è·å–æœåŠ¡æ˜ å°„è¡¨
+        // »ñÈ¡·şÎñÓ³Éä±í
         Map<String, Object> serviceMap = serviceProvider.getServiceProviderMap();
 
-        // åˆ›å»ºå¹¶å¯åŠ¨åŸºäºçº¿ç¨‹æ± çš„RPCæœåŠ¡å™¨
+        // ´´½¨²¢Æô¶¯»ùÓÚÏß³Ì³ØµÄRPC·şÎñÆ÷
         // RPCServer rpcServer = new ThreadPoolRPCRPCServer(serviceMap);
         RPCServer rpcServer = new NettyRPCServer(serviceProvider);
         rpcServer.start(8899);

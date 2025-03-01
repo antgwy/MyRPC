@@ -9,7 +9,7 @@ import org.myproject.server.ServiceProvider;
 import lombok.AllArgsConstructor;
 
 /**
- * NettyRPCServerç±»ï¼Œå®ç°RPCServeræ¥å£ï¼Œè´Ÿè´£ä½¿ç”¨Nettyå¤„ç†ç½‘ç»œé€šä¿¡
+ * NettyRPCServerÀà£¬ÊµÏÖRPCServer½Ó¿Ú£¬¸ºÔğÊ¹ÓÃNetty´¦ÀíÍøÂçÍ¨ĞÅ
  */
 @AllArgsConstructor
 public class NettyRPCServer implements RPCServer {
@@ -17,10 +17,10 @@ public class NettyRPCServer implements RPCServer {
 
     @Override
     public void start(int port) {
-        // Netty çš„ä¸¤ä¸ªçº¿ç¨‹ç»„ï¼šbossGroupè´Ÿè´£æ¥å—è¿æ¥ï¼ŒworkerGroupè´Ÿè´£å¤„ç†è¿æ¥
+        // Netty µÄÁ½¸öÏß³Ì×é£ºbossGroup¸ºÔğ½ÓÊÜÁ¬½Ó£¬workerGroup¸ºÔğ´¦ÀíÁ¬½Ó
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
-        System.out.println("NettyæœåŠ¡ç«¯å¯åŠ¨...");
+        System.out.println("Netty·şÎñ¶ËÆô¶¯...");
 
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
@@ -30,17 +30,17 @@ public class NettyRPCServer implements RPCServer {
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
 
-            // ç»‘å®šç«¯å£å¹¶å¯åŠ¨
+            // °ó¶¨¶Ë¿Ú²¢Æô¶¯
             ChannelFuture channelFuture = bootstrap.bind(port).sync();
-            System.out.println("NettyRPCServer å¯åŠ¨ï¼Œç›‘å¬ç«¯å£ " + port);
+            System.out.println("NettyRPCServer Æô¶¯£¬¼àÌı¶Ë¿Ú " + port);
 
-            // ç­‰å¾…æœåŠ¡å™¨å…³é—­
+            // µÈ´ı·şÎñÆ÷¹Ø±Õ
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
-            System.out.println("NettyRPCServer å¯åŠ¨å¤±è´¥");
+            System.out.println("NettyRPCServer Æô¶¯Ê§°Ü");
         } finally {
-            // ä¼˜é›…å…³é—­çº¿ç¨‹ç»„
+            // ÓÅÑÅ¹Ø±ÕÏß³Ì×é
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }
@@ -48,6 +48,6 @@ public class NettyRPCServer implements RPCServer {
 
     @Override
     public void stop() {
-        // å®ç°æœåŠ¡å™¨åœæ­¢é€»è¾‘ï¼ˆå¦‚æœéœ€è¦ï¼‰
+        // ÊµÏÖ·şÎñÆ÷Í£Ö¹Âß¼­£¨Èç¹ûĞèÒª£©
     }
 }

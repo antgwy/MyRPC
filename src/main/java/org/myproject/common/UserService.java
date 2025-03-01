@@ -1,22 +1,22 @@
 package org.myproject.common;
 
 /**
- * ç”¨æˆ·æœåŠ¡æ¥å£ï¼Œå®šä¹‰å®¢æˆ·ç«¯å¯è°ƒç”¨çš„æ–¹æ³•
+ * ÓÃ»§·şÎñ½Ó¿Ú£¬¶¨Òå¿Í»§¶Ë¿Éµ÷ÓÃµÄ·½·¨
  */
 public interface UserService {
     /**
-     * æ ¹æ®ç”¨æˆ·IDè·å–ç”¨æˆ·ä¿¡æ¯
+     * ¸ù¾İÓÃ»§ID»ñÈ¡ÓÃ»§ĞÅÏ¢
      *
-     * @param id ç”¨æˆ·ID
-     * @return Userå¯¹è±¡
+     * @param id ÓÃ»§ID
+     * @return User¶ÔÏó
      */
     User getUserByUserId(Integer id);
 
     /**
-     * æ’å…¥ç”¨æˆ·æ•°æ®
+     * ²åÈëÓÃ»§Êı¾İ
      *
-     * @param user ç”¨æˆ·å¯¹è±¡
-     * @return æ“ä½œç»“æœï¼ˆä¾‹å¦‚ï¼Œ1è¡¨ç¤ºæˆåŠŸï¼‰
+     * @param user ÓÃ»§¶ÔÏó
+     * @return ²Ù×÷½á¹û£¨ÀıÈç£¬1±íÊ¾³É¹¦£©
      */
     Integer insertUserId(User user);
 }

@@ -7,13 +7,13 @@ import org.myproject.common.RPCResponse;
 import io.netty.util.AttributeKey;
 
 /**
- * NettyRPCClientHandlerç±»ï¼Œå¤„ç†æ¥è‡ªæœåŠ¡å™¨çš„RPCå“åº”
+ * NettyRPCClientHandlerÀà£¬´¦ÀíÀ´×Ô·şÎñÆ÷µÄRPCÏìÓ¦
  */
 public class NettyRPCClientHandler extends SimpleChannelInboundHandler<RPCResponse> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RPCResponse msg) throws Exception {
-        // å°†RPCResponseå­˜å‚¨åˆ°channelçš„å±æ€§ä¸­ï¼Œä¾›å®¢æˆ·ç«¯è¯»å–
+        // ½«RPCResponse´æ´¢µ½channelµÄÊôĞÔÖĞ£¬¹©¿Í»§¶Ë¶ÁÈ¡
         AttributeKey<RPCResponse> key = AttributeKey.valueOf("RPCResponse");
         ctx.channel().attr(key).set(msg);
         ctx.channel().close();

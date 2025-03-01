@@ -6,36 +6,36 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * RPCå“åº”å¯¹è±¡ï¼ŒåŒ…å«æ–¹æ³•è°ƒç”¨çš„ç»“æœå’ŒçŠ¶æ€ä¿¡æ¯
+ * RPCÏìÓ¦¶ÔÏó£¬°üº¬·½·¨µ÷ÓÃµÄ½á¹ûºÍ×´Ì¬ĞÅÏ¢
  */
 @Data
 @Builder
 public class RPCResponse implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // çŠ¶æ€ç ï¼Œ200è¡¨ç¤ºæˆåŠŸï¼Œ500è¡¨ç¤ºå¤±è´¥
+    // ×´Ì¬Âë£¬200±íÊ¾³É¹¦£¬500±íÊ¾Ê§°Ü
     private int code;
-    // çŠ¶æ€æ¶ˆæ¯
+    // ×´Ì¬ÏûÏ¢
     private String message;
-    // è¿”å›çš„æ•°æ®
+    // ·µ»ØµÄÊı¾İ
     private Object data;
 
     /**
-     * æˆåŠŸå“åº”çš„å¿«æ·æ–¹æ³•
+     * ³É¹¦ÏìÓ¦µÄ¿ì½İ·½·¨
      *
-     * @param data è¿”å›æ•°æ®
-     * @return RPCResponseå¯¹è±¡
+     * @param data ·µ»ØÊı¾İ
+     * @return RPCResponse¶ÔÏó
      */
     public static RPCResponse success(Object data) {
         return RPCResponse.builder().code(200).data(data).build();
     }
 
     /**
-     * å¤±è´¥å“åº”çš„å¿«æ·æ–¹æ³•
+     * Ê§°ÜÏìÓ¦µÄ¿ì½İ·½·¨
      *
-     * @return RPCResponseå¯¹è±¡
+     * @return RPCResponse¶ÔÏó
      */
     public static RPCResponse fail() {
-        return RPCResponse.builder().code(500).message("æœåŠ¡å™¨å‘ç”Ÿé”™è¯¯").build();
+        return RPCResponse.builder().code(500).message("·şÎñÆ÷·¢Éú´íÎó").build();
     }
 }

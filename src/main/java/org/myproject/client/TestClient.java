@@ -6,33 +6,33 @@ import org.myproject.common.Blog;
 import org.myproject.common.BlogService;
 
 /**
- * TestClientç±»ï¼Œæµ‹è¯•RPCå®¢æˆ·ç«¯çš„åŠŸèƒ½
+ * TestClientÀà£¬²âÊÔRPC¿Í»§¶ËµÄ¹¦ÄÜ
  */
 public class TestClient {
     public static void main(String[] args) {
-        // åˆ›å»ºNetty RPCå®¢æˆ·ç«¯ï¼ŒæŒ‡å®šæœåŠ¡å™¨ä¸»æœºå’Œç«¯å£
+        // ´´½¨Netty RPC¿Í»§¶Ë£¬Ö¸¶¨·şÎñÆ÷Ö÷»úºÍ¶Ë¿Ú
         NettyRPCClient nettyRPCClient = new NettyRPCClient("127.0.0.1", 8899);
 
-        // åˆ›å»ºRPCClientProxyå¹¶ä¼ å…¥NettyRPCClient
+        // ´´½¨RPCClientProxy²¢´«ÈëNettyRPCClient
         RPCClientProxy rpcClientProxy = new RPCClientProxy(nettyRPCClient);
 
-        // è·å–UserServiceçš„ä»£ç†å¯¹è±¡
+        // »ñÈ¡UserServiceµÄ´úÀí¶ÔÏó
         UserService userService = rpcClientProxy.getProxy(UserService.class);
 
-        // è·å–BlogServiceçš„ä»£ç†å¯¹è±¡
+        // »ñÈ¡BlogServiceµÄ´úÀí¶ÔÏó
         BlogService blogService = rpcClientProxy.getProxy(BlogService.class);
 
-        // è°ƒç”¨UserServiceçš„è¿œç¨‹æ–¹æ³•
+        // µ÷ÓÃUserServiceµÄÔ¶³Ì·½·¨
         User userByUserId = userService.getUserByUserId(10);
-        System.out.println("å®¢æˆ·ç«¯ï¼šä»æœåŠ¡ç«¯å¾—åˆ°çš„userä¸ºï¼š" + userByUserId);
+        System.out.println("¿Í»§¶Ë£º´Ó·şÎñ¶ËµÃµ½µÄuserÎª£º" + userByUserId);
 
-        // è°ƒç”¨UserServiceçš„å¦ä¸€ä¸ªè¿œç¨‹æ–¹æ³•
-        User user = User.builder().userName("å¼ ä¸‰").id(100).sex(true).build();
+        // µ÷ÓÃUserServiceµÄÁíÒ»¸öÔ¶³Ì·½·¨
+        User user = User.builder().userName("ÕÅÈı").id(100).sex(true).build();
         Integer insertResult = userService.insertUserId(user);
-        System.out.println("å®¢æˆ·ç«¯ï¼šå‘æœåŠ¡ç«¯æ’å…¥æ•°æ®ç»“æœï¼š" + insertResult);
+        System.out.println("¿Í»§¶Ë£ºÏò·şÎñ¶Ë²åÈëÊı¾İ½á¹û£º" + insertResult);
 
-        // è°ƒç”¨BlogServiceçš„è¿œç¨‹æ–¹æ³•
+        // µ÷ÓÃBlogServiceµÄÔ¶³Ì·½·¨
         Blog blogById = blogService.getBlogById(10000);
-        System.out.println("å®¢æˆ·ç«¯ï¼šä»æœåŠ¡ç«¯å¾—åˆ°çš„blogä¸ºï¼š" + blogById);
+        System.out.println("¿Í»§¶Ë£º´Ó·şÎñ¶ËµÃµ½µÄblogÎª£º" + blogById);
     }
 }

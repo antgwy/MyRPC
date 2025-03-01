@@ -1,14 +1,14 @@
 package org.myproject.common;
 
 /**
- * BlogService鎺ュ彛锛屽畾涔夊鎴风鍙皟鐢ㄧ殑鍗氬鐩稿叧鏂规硶
+ * BlogService接口，定义客户端可调用的博客相关方法
  */
 public interface BlogService {
     /**
-     * 鏍规嵁鍗氬ID鑾峰彇鍗氬淇℃伅
+     * 根据博客ID获取博客信息
      *
-     * @param id 鍗氬ID
-     * @return Blog瀵硅薄
+     * @param id 博客ID
+     * @return Blog对象
      */
     Blog getBlogById(Integer id);
 }

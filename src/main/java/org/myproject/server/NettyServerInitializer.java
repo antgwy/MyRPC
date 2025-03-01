@@ -12,7 +12,7 @@ import io.netty.handler.codec.serialization.ClassResolvers;
 import lombok.AllArgsConstructor;
 
 /**
- * NettyServerInitializerç±»ï¼Œåˆå§‹åŒ–NettyæœåŠ¡å™¨çš„ChannelPipeline
+ * NettyServerInitializerÀà£¬³õÊ¼»¯Netty·şÎñÆ÷µÄChannelPipeline
  */
 @AllArgsConstructor
 public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
@@ -21,14 +21,14 @@ public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        // å¤„ç†ç²˜åŒ…æ‹†åŒ…ï¼š[é•¿åº¦][æ¶ˆæ¯ä½“]
+        // ´¦ÀíÕ³°ü²ğ°ü£º[³¤¶È][ÏûÏ¢Ìå]
         pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
         pipeline.addLast(new LengthFieldPrepender(4));
-        // ä½¿ç”¨Javaåºåˆ—åŒ–
+        // Ê¹ÓÃJavaĞòÁĞ»¯
         pipeline.addLast(new ObjectEncoder());
         pipeline.addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
 
-        // æ·»åŠ è‡ªå®šä¹‰çš„RPCå¤„ç†å™¨
+        // Ìí¼Ó×Ô¶¨ÒåµÄRPC´¦ÀíÆ÷
         pipeline.addLast(new NettyRPCServerHandler(serviceProvider));
     }
 }

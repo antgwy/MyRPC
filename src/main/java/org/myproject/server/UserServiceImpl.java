@@ -7,13 +7,13 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * UserService çš„å…·ä½“å®ç°ç±»ï¼Œæä¾›å®é™…çš„ä¸šåŠ¡é€»è¾‘
+ * UserService µÄ¾ßÌåÊµÏÖÀà£¬Ìá¹©Êµ¼ÊµÄÒµÎñÂß¼­
  */
 public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUserId(Integer id) {
-        System.out.println("æœåŠ¡ç«¯ï¼šæ¥æ”¶åˆ°å®¢æˆ·ç«¯æŸ¥è¯¢ç”¨æˆ·IDï¼š" + id);
-        // æ¨¡æ‹Ÿæ•°æ®åº“æŸ¥è¯¢
+        System.out.println("·şÎñ¶Ë£º½ÓÊÕµ½¿Í»§¶Ë²éÑ¯ÓÃ»§ID£º" + id);
+        // Ä£ÄâÊı¾İ¿â²éÑ¯
         Random random = new Random();
         User user = User.builder()
                 .id(id)
@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer insertUserId(User user) {
-        System.out.println("æœåŠ¡ç«¯ï¼šæ’å…¥æ•°æ®æˆåŠŸï¼š" + user);
-        // æ¨¡æ‹Ÿæ•°æ®åº“æ’å…¥æ“ä½œï¼Œè¿”å›1è¡¨ç¤ºæˆåŠŸ
+        System.out.println("·şÎñ¶Ë£º²åÈëÊı¾İ³É¹¦£º" + user);
+        // Ä£ÄâÊı¾İ¿â²åÈë²Ù×÷£¬·µ»Ø1±íÊ¾³É¹¦
         return 1;
     }
 }

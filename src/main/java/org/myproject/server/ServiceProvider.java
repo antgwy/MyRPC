@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * æœåŠ¡æ³¨å†Œä¸­å¿ƒï¼Œç®¡ç†æœåŠ¡æ¥å£ä¸å®ç°ç±»çš„æ˜ å°„
+ * ·şÎñ×¢²áÖĞĞÄ£¬¹ÜÀí·şÎñ½Ó¿ÚÓëÊµÏÖÀàµÄÓ³Éä
  */
 public class ServiceProvider {
     /**
-     * å­˜æ”¾æœåŠ¡æ¥å£åä¸æœåŠ¡å®ç°ç±»çš„æ˜ å°„
+     * ´æ·Å·şÎñ½Ó¿ÚÃûÓë·şÎñÊµÏÖÀàµÄÓ³Éä
      */
     private Map<String, Object> interfaceProvider;
 
@@ -17,32 +17,32 @@ public class ServiceProvider {
     }
 
     /**
-     * æ³¨å†ŒæœåŠ¡å®ç°ç±»ï¼Œè‡ªåŠ¨æ³¨å†Œå…¶å®ç°çš„æ‰€æœ‰æ¥å£
+     * ×¢²á·şÎñÊµÏÖÀà£¬×Ô¶¯×¢²áÆäÊµÏÖµÄËùÓĞ½Ó¿Ú
      *
-     * @param service æœåŠ¡å®ç°ç±»å®ä¾‹
+     * @param service ·şÎñÊµÏÖÀàÊµÀı
      */
     public void provideServiceInterface(Object service){
         Class<?>[] interfaces = service.getClass().getInterfaces();
         for(Class<?> clazz : interfaces){
             interfaceProvider.put(clazz.getName(), service);
-            System.out.println("æ³¨å†ŒæœåŠ¡: " + clazz.getName());
+            System.out.println("×¢²á·şÎñ: " + clazz.getName());
         }
     }
 
     /**
-     * è·å–æœåŠ¡å®ç°ç±»
+     * »ñÈ¡·şÎñÊµÏÖÀà
      *
-     * @param interfaceName æœåŠ¡æ¥å£å
-     * @return æœåŠ¡å®ç°ç±»å®ä¾‹
+     * @param interfaceName ·şÎñ½Ó¿ÚÃû
+     * @return ·şÎñÊµÏÖÀàÊµÀı
      */
     public Object getService(String interfaceName){
         return interfaceProvider.get(interfaceName);
     }
 
     /**
-     * è·å–æ‰€æœ‰æœåŠ¡
+     * »ñÈ¡ËùÓĞ·şÎñ
      *
-     * @return æœåŠ¡æ˜ å°„è¡¨
+     * @return ·şÎñÓ³Éä±í
      */
     public Map<String, Object> getServiceProviderMap(){
         return interfaceProvider;

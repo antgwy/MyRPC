@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * ç”¨æˆ·å®ä½“ç±»ï¼Œå…±äº«ç»™å®¢æˆ·ç«¯å’ŒæœåŠ¡ç«¯
+ * ÓÃ»§ÊµÌåÀà£¬¹²Ïí¸ø¿Í»§¶ËºÍ·şÎñ¶Ë
  */
 @Data
 @Builder
@@ -22,8 +22,8 @@ public class User implements Serializable {
     private Boolean sex;
 }
 
-//Lombok æ³¨è§£ï¼š
-//@Dataï¼šè‡ªåŠ¨ç”Ÿæˆ gettersã€settersã€toStringã€equals å’Œ hashCode æ–¹æ³•ã€‚
-//@Builderï¼šä¸ºç±»ç”Ÿæˆå»ºé€ è€…æ¨¡å¼çš„å®ç°ï¼Œç®€åŒ–å¯¹è±¡åˆ›å»ºã€‚
-//@NoArgsConstructor å’Œ @AllArgsConstructorï¼šç”Ÿæˆæ— å‚å’Œå…¨å‚æ„é€ æ–¹æ³•ã€‚
-//        Serializableæ¥å£ï¼šç¡®ä¿å¯¹è±¡å¯ä»¥åºåˆ—åŒ–ï¼Œä»¥ä¾¿é€šè¿‡ç½‘ç»œä¼ è¾“ã€‚
+//Lombok ×¢½â£º
+//@Data£º×Ô¶¯Éú³É getters¡¢setters¡¢toString¡¢equals ºÍ hashCode ·½·¨¡£
+//@Builder£ºÎªÀàÉú³É½¨ÔìÕßÄ£Ê½µÄÊµÏÖ£¬¼ò»¯¶ÔÏó´´½¨¡£
+//@NoArgsConstructor ºÍ @AllArgsConstructor£ºÉú³ÉÎŞ²ÎºÍÈ«²Î¹¹Ôì·½·¨¡£
+//        Serializable½Ó¿Ú£ºÈ·±£¶ÔÏó¿ÉÒÔĞòÁĞ»¯£¬ÒÔ±ãÍ¨¹ıÍøÂç´«Êä¡£

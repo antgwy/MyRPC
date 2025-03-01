@@ -7,33 +7,33 @@ import java.io.*;
 import java.net.Socket;
 
 /**
- * IOClientç±»ï¼Œè´Ÿè´£ä¸æœåŠ¡ç«¯çš„é€šä¿¡
+ * IOClientÀà£¬¸ºÔğÓë·şÎñ¶ËµÄÍ¨ĞÅ
  */
 public class IOClient {
     /**
-     * å‘é€RPCRequeståˆ°æŒ‡å®šæœåŠ¡å™¨ï¼Œå¹¶æ¥æ”¶RPCResponse
+     * ·¢ËÍRPCRequestµ½Ö¸¶¨·şÎñÆ÷£¬²¢½ÓÊÕRPCResponse
      *
-     * @param host    æœåŠ¡å™¨ä¸»æœºåœ°å€
-     * @param port    æœåŠ¡å™¨ç«¯å£å·
-     * @param request RPCè¯·æ±‚å¯¹è±¡
-     * @return RPCå“åº”å¯¹è±¡
+     * @param host    ·şÎñÆ÷Ö÷»úµØÖ·
+     * @param port    ·şÎñÆ÷¶Ë¿ÚºÅ
+     * @param request RPCÇëÇó¶ÔÏó
+     * @return RPCÏìÓ¦¶ÔÏó
      */
     public static RPCResponse sendRequest(String host, int port, RPCRequest request) {
         try (Socket socket = new Socket(host, port);
              ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
              ObjectInputStream ois = new ObjectInputStream(socket.getInputStream())) {
 
-            System.out.println("å®¢æˆ·ç«¯ï¼šå‘é€è¯·æ±‚ " + request);
+            System.out.println("¿Í»§¶Ë£º·¢ËÍÇëÇó " + request);
             oos.writeObject(request);
             oos.flush();
 
             RPCResponse response = (RPCResponse) ois.readObject();
-            System.out.println("å®¢æˆ·ç«¯ï¼šæ”¶åˆ°å“åº” " + response);
+            System.out.println("¿Í»§¶Ë£ºÊÕµ½ÏìÓ¦ " + response);
             return response;
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-            System.out.println("å®¢æˆ·ç«¯ï¼šå‘é€è¯·æ±‚æ—¶å‡ºé”™");
+            System.out.println("¿Í»§¶Ë£º·¢ËÍÇëÇóÊ±³ö´í");
             return null;
         }
     }

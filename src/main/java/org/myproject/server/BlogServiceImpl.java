@@ -6,7 +6,7 @@ import org.myproject.common.BlogService;
 import java.util.UUID;
 
 /**
- * BlogService 鐨勫叿浣撳疄鐜扮被锛屾彁渚涘疄闄呯殑涓氬姟閫昏緫
+ * BlogService 的具体实现类，提供实际的业务逻辑
  */
 public class BlogServiceImpl implements BlogService {
     @Override
@@ -14,9 +14,9 @@ public class BlogServiceImpl implements BlogService {
         Blog blog = Blog.builder()
                 .id(id)
                 .useId(22)
-                .title("鎴戠殑鍗氬 " + UUID.randomUUID().toString())
+                .title("我的博客 " + UUID.randomUUID().toString())
                 .build();
-        System.out.println("鏈嶅姟绔細鏌ヨ鍒板崥瀹D " + id + "锛屽崥瀹㈠唴瀹癸細" + blog);
+        System.out.println("服务端：查询到博客ID " + id + "，博客内容：" + blog);
         return blog;
     }
 }

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 /**
- * åŸºäºçº¿ç¨‹æ± çš„RPCæœåŠ¡å™¨å®ç°
+ * »ùÓÚÏß³Ì³ØµÄRPC·şÎñÆ÷ÊµÏÖ
  */
 public class ThreadPoolRPCRPCServer implements RPCServer {
     private final ThreadPoolExecutor threadPool;
@@ -36,7 +36,7 @@ public class ThreadPoolRPCRPCServer implements RPCServer {
 
     @Override
     public void start(int port) {
-        System.out.println("æœåŠ¡ç«¯å¯åŠ¨äº†ï¼Œç›‘å¬ç«¯å£ " + port);
+        System.out.println("·şÎñ¶ËÆô¶¯ÁË£¬¼àÌı¶Ë¿Ú " + port);
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             while(true){
                 Socket socket = serverSocket.accept();

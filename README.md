@@ -85,6 +85,11 @@ mvn clean compile -e -X
 mvn exec:java -Dexec.mainClass="org.myproject.server.TestServer"
 ```
 
+```bash
+mvn -X clean compile exec:java "-Dexec.mainClass=org.myproject.server.TestServer"
+```
+
+
 <div align="center"><img src="imgs/runserver.png"/></div>
 
 
@@ -92,6 +97,10 @@ mvn exec:java -Dexec.mainClass="org.myproject.server.TestServer"
 
 ```bash
 mvn exec:java -Dexec.mainClass="org.myproject.client.TestClient"
+```
+
+```bash
+mvn exec:java "-Dexec.mainClass=org.myproject.client.TestClient"
 ```
 
 <div align="center"><img src="imgs/runclient.png"/></div>

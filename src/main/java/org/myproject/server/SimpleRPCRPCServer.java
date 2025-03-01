@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.Map;
 
 /**
- * åŸºäºä¼ ç»ŸBIOçš„RPCæœåŠ¡å™¨å®ç°
+ * »ùÓÚ´«Í³BIOµÄRPC·şÎñÆ÷ÊµÏÖ
  */
 public class SimpleRPCRPCServer implements RPCServer {
     private Map<String, Object> serviceProvide;
@@ -18,20 +18,20 @@ public class SimpleRPCRPCServer implements RPCServer {
     @Override
     public void start(int port) {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("æœåŠ¡ç«¯å¯åŠ¨äº†ï¼Œç›‘å¬ç«¯å£ " + port);
+            System.out.println("·şÎñ¶ËÆô¶¯ÁË£¬¼àÌı¶Ë¿Ú " + port);
             while (true){
                 Socket socket = serverSocket.accept();
-                // æ–°å»ºä¸€ä¸ªWorkThreadå¤„ç†è¯·æ±‚
+                // ĞÂ½¨Ò»¸öWorkThread´¦ÀíÇëÇó
                 new Thread(new WorkThread(socket, serviceProvide)).start();
             }
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("æœåŠ¡å™¨å¯åŠ¨å¤±è´¥");
+            System.out.println("·şÎñÆ÷Æô¶¯Ê§°Ü");
         }
     }
 
     @Override
     public void stop() {
-        // å®ç°æœåŠ¡å™¨åœæ­¢é€»è¾‘ï¼ˆå¦‚å…³é—­ServerSocketç­‰ï¼‰
+        // ÊµÏÖ·şÎñÆ÷Í£Ö¹Âß¼­£¨Èç¹Ø±ÕServerSocketµÈ£©
     }
 }

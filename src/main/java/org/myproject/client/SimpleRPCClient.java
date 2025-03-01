@@ -9,7 +9,7 @@ import java.io.*;
 import java.net.Socket;
 
 /**
- * SimpleRPCClientç±»ï¼ŒåŸºäºJava Socketå®ç°RPCClientæ¥å£
+ * SimpleRPCClientÀà£¬»ùÓÚJava SocketÊµÏÖRPCClient½Ó¿Ú
  */
 @AllArgsConstructor
 public class SimpleRPCClient implements RPCClient {
@@ -17,10 +17,10 @@ public class SimpleRPCClient implements RPCClient {
     private int port;
 
     /**
-     * å‘é€RPCRequestå¹¶æ¥æ”¶RPCResponse
+     * ·¢ËÍRPCRequest²¢½ÓÊÕRPCResponse
      *
-     * @param request RPCè¯·æ±‚å¯¹è±¡
-     * @return RPCå“åº”å¯¹è±¡
+     * @param request RPCÇëÇó¶ÔÏó
+     * @return RPCÏìÓ¦¶ÔÏó
      */
     @Override
     public RPCResponse sendRequest(RPCRequest request) {
@@ -28,17 +28,17 @@ public class SimpleRPCClient implements RPCClient {
              ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
              ObjectInputStream ois = new ObjectInputStream(socket.getInputStream())) {
 
-            System.out.println("å®¢æˆ·ç«¯ï¼šå‘é€è¯·æ±‚ " + request);
+            System.out.println("¿Í»§¶Ë£º·¢ËÍÇëÇó " + request);
             oos.writeObject(request);
             oos.flush();
 
             RPCResponse response = (RPCResponse) ois.readObject();
-            System.out.println("å®¢æˆ·ç«¯ï¼šæ¥æ”¶åˆ°å“åº” " + response);
+            System.out.println("¿Í»§¶Ë£º½ÓÊÕµ½ÏìÓ¦ " + response);
             return response;
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-            System.out.println("å®¢æˆ·ç«¯ï¼šå‘é€è¯·æ±‚æ—¶å‡ºé”™");
+            System.out.println("¿Í»§¶Ë£º·¢ËÍÇëÇóÊ±³ö´í");
             return null;
         }
     }

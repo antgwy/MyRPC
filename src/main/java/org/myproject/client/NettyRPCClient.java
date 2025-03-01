@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * NettyRPCClientç±»ï¼ŒåŸºäºNettyå®ç°RPCClientæ¥å£
+ * NettyRPCClientÀà£¬»ùÓÚNettyÊµÏÖRPCClient½Ó¿Ú
  */
 public class NettyRPCClient implements RPCClient {
     private String host;
@@ -29,10 +29,10 @@ public class NettyRPCClient implements RPCClient {
     }
 
     /**
-     * å‘é€RPCRequestå¹¶æ¥æ”¶RPCResponse
+     * ·¢ËÍRPCRequest²¢½ÓÊÕRPCResponse
      *
-     * @param request RPCè¯·æ±‚å¯¹è±¡
-     * @return RPCå“åº”å¯¹è±¡
+     * @param request RPCÇëÇó¶ÔÏó
+     * @return RPCÏìÓ¦¶ÔÏó
      */
     @Override
     public RPCResponse sendRequest(RPCRequest request) {
@@ -48,13 +48,13 @@ public class NettyRPCClient implements RPCClient {
                         @Override
                         protected void initChannel(Channel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            // å¤„ç†ç²˜åŒ…æ‹†åŒ…é—®é¢˜
+                            // ´¦ÀíÕ³°ü²ğ°üÎÊÌâ
                             pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
                             pipeline.addLast(new LengthFieldPrepender(4));
-                            // ä½¿ç”¨Javaåºåˆ—åŒ–
+                            // Ê¹ÓÃJavaĞòÁĞ»¯
                             pipeline.addLast(new ObjectEncoder());
                             pipeline.addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
-                            // è‡ªå®šä¹‰å¤„ç†å™¨
+                            // ×Ô¶¨Òå´¦ÀíÆ÷
                             pipeline.addLast(new SimpleChannelInboundHandler<RPCResponse>() {
                                 @Override
                                 protected void channelRead0(ChannelHandlerContext ctx, RPCResponse msg) throws Exception {
@@ -72,21 +72,21 @@ public class NettyRPCClient implements RPCClient {
                         }
                     });
 
-            // è¿æ¥åˆ°æœåŠ¡å™¨
+            // Á¬½Óµ½·şÎñÆ÷
             ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
             Channel channel = channelFuture.channel();
 
-            // å‘é€è¯·æ±‚
+            // ·¢ËÍÇëÇó
             channel.writeAndFlush(request).sync();
 
-            // ç­‰å¾…å“åº”
+            // µÈ´ıÏìÓ¦
             latch.await();
 
             return responseHolder[0];
 
         } catch (InterruptedException e) {
             e.printStackTrace();
-            System.out.println("Nettyå®¢æˆ·ç«¯ï¼šå‘é€è¯·æ±‚æ—¶å‡ºé”™");
+            System.out.println("Netty¿Í»§¶Ë£º·¢ËÍÇëÇóÊ±³ö´í");
             return null;
         } finally {
             group.shutdownGracefully();
